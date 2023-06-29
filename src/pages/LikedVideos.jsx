@@ -10,33 +10,41 @@ const LikedVideos = () => {
     const userData = useContext(UserDataContext);
     const array = Array(12).fill(0);
 
+    // console.log(userData)
+
     useEffect(() => {
         const getDataFromApi = async () => {
             setLoading(true);
-            if (userData && userData.likedVdos && userData.likedVdos.length) {
-                // creating a comma separated string of video ids
-                const videoIds = userData.likedVdos.join(",");
-                // console.log(videoIds);
 
-                // fetching data of liked videos
+            if (userData && userData.likedVdos && userData.likedVdos.length) {
+                const videoIds = userData.likedVdos.join(",");
                 const apiData = await fetchFromAPI(`video/info?id=${videoIds}`);
-                setVideos(apiData.data);
-                // console.log(apiData.data);
+
+                if (userData.likedVdos.length === 1) {
+                    setVideos([apiData]);
+                } else {
+                    setVideos(apiData.data);
+                }
             }
+
             setLoading(false);
         };
+
 
         getDataFromApi();
 
         // eslint-disable-next-line
     }, [userData]);
 
+
+
     return (
         <div className="w-full max-w-full max-h-full overflow-auto">
             <h2 className="dark:text-white text-black m-4 text-2xl md:text-3xl">Liked videos</h2>
             <div className='dark:bg-black bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-5'>
+
                 {
-                    !loading ?
+                    !loading && (videos) ?
                         videos.map((ele, i) => {
 
                             const { id, title, channelTitle, publishedTimeText, viewCount, channelThumbnail, thumbnail, richThumbnail, lengthText, channelId } = ele;

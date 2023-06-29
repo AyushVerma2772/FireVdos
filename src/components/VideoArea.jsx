@@ -87,12 +87,13 @@ const VideoArea = ({ loading, videoData }) => {
                                         {/* Agar user ne video ko like kara ha to 'Liked' dikhna chahiye else like counts */}
                                         <span>
                                             {
-                                                userData?.likedVdos.includes(videoData?.videoId) ?
+                                                userData && userData.likedVdos && userData.likedVdos.includes(videoData?.videoId) ?
                                                     "Liked"
                                                     :
                                                     parseInt(videoData?.likeCount).toLocaleString()
                                             }
                                         </span>
+
                                     </button>
                                 }
 
