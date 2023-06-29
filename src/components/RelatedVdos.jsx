@@ -18,7 +18,6 @@ const RelatedVdos = ({ relatedVdos, loading }) => {
                             return (<HomeVdoCard key={i} videoId={videoId} title={title} channelTitle={channelTitle} time={publishedTimeText} views={viewCount} channelPhoto={channelThumbnail} thumbnail={thumbnail} channelId={channelId} />)
                         }
                         return null;
-
                     })
 
                     :
