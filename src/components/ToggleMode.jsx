@@ -17,7 +17,7 @@ const ToggleMode = () => {
     }
     return (
         <>
-            <button className='w-[90%] d-flex justify-start sm:flex-col gap-3 sm:gap-1 py-3 px-2.5 dark:hover:bg-dark-gray/50 hover:bg-gray-300/40 rounded-md sm:w-16' onClick={toggleTheme} title={`${theme === 'light' ? 'Dark' : 'Light'} mode`}>
+            <button className='nav-link' onClick={toggleTheme} title={`${theme === 'light' ? 'Dark' : 'Light'} mode`}>
                 {
                     theme === 'light' ? <MdDarkMode /> : <MdLightMode />
                 }

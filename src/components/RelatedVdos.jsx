@@ -10,7 +10,7 @@ const RelatedVdos = ({ relatedVdos, loading }) => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 justify-items-center gap-5 py-5 items-center w-full lg:w-[30%] 2xl:w-[25%] 2xl:m-auto">
             {
-                !loading ?
+                !loading && relatedVdos ?
                     relatedVdos.map((ele, i) => {
                         const { channelThumbnail, thumbnail, videoId, title, channelTitle, publishedTimeText, viewCount, channelId } = ele;
 

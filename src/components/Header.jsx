@@ -64,7 +64,7 @@ const Header = ({ setShowNav }) => {
                 <button className='h-10 w-10 rounded-full' onClick={handleGoogleSignIn} title={currentUser ? currentUser.displayName : 'Sign in'} >
                     <img className='w-10 h-10 rounded-full' src={
                         currentUser ? currentUser.photoURL : 'https://static.vecteezy.com/system/resources/previews/008/506/404/original/contact-person-red-icon-free-png.png'
-                    } alt="profile-img" referrerPolicy='no-referrer' />
+                    } alt="profile-img" referrerPolicy='' />
                 </button>
             </div>
 

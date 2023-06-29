@@ -7,6 +7,7 @@ import { CountryCodeProvider } from './context/countryCodeContext';
 import { TrendingVdoProvider } from './context/TrendingVdoContext';
 import SearchDataContextProvider from './context/SearchDataContext';
 import { UserDataContextProvider } from './context/UserDataContext';
+import { HomeVdoProvider } from './context/HomeVdoContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -16,7 +17,9 @@ root.render(
       <SearchDataContextProvider>
         <TrendingVdoProvider>
           <UserDataContextProvider>
-            <App />
+            <HomeVdoProvider>
+              <App />
+            </HomeVdoProvider>
           </UserDataContextProvider>
         </TrendingVdoProvider>
       </SearchDataContextProvider>

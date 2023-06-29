@@ -48,23 +48,25 @@ const SearchPage = () => {
                     Search result for <span className="text-red-600">{searchValue}</span>
                 </h2>
                 <div className="dark:bg-black bg-white p-4 d-flex flex-col gap-6">
-                    {!loading ? (
-                        videos.map((ele, i) => {
-                            const {
-                                videoId, title, channelTitle, publishedTimeText, viewCount, thumbnail, description, richThumbnail, lengthText, channelId, type,
-                            } = ele;
+                    {
+                        !loading && videos ?
+                            videos.map((ele, i) => {
+                                const {
+                                    videoId, title, channelTitle, publishedTimeText, viewCount, thumbnail, description, richThumbnail, lengthText, channelId, type,
+                                } = ele;
 
-                            if (thumbnail) {
-                                return (
-                                    <SearchVdoCard key={i} videoId={videoId} title={title} channelTitle={channelTitle} time={publishedTimeText} views={viewCount} thumbnail={thumbnail} description={description} richThumbnail={richThumbnail} lengthText={lengthText} channelId={channelId} type={type}
-                                    />
-                                );
-                            }
-                            return <span className="hidden" key={i}></span>;
-                        })
-                    ) : (
-                        array.map((ele, i) => <SearchVdoCardSkeleton key={i} />)
-                    )}
+                                if (thumbnail) {
+                                    return (
+                                        <SearchVdoCard key={i} videoId={videoId} title={title} channelTitle={channelTitle} time={publishedTimeText} views={viewCount} thumbnail={thumbnail} description={description} richThumbnail={richThumbnail} lengthText={lengthText} channelId={channelId} type={type}
+                                        />
+                                    );
+                                }
+                                return null;
+                            })
+                            :
+                            array.map((ele, i) => <SearchVdoCardSkeleton key={i} />)
+
+                    }
                 </div>
             </div>
         </>

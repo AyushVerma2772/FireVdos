@@ -33,7 +33,7 @@ const Watch = () => {
     return (
         <>
 
-            <div className="w-full lg:flex max-w-full max-h-full overflow-auto">
+            <div className="lg:flex w-full max-w-full max-h-full overflow-auto">
                 <VideoArea loading={loading} videoData={videoData} />
 
                 <RelatedVdos loading={loading} relatedVdos={relatedVdos} />

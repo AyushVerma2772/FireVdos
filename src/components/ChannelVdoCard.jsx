@@ -25,7 +25,7 @@ const ChannelVdoCard = ({ videoId, title, time, views, thumbnail, richThumbnail,
                             </>
                     }
 
-                    <div className="w-full h-full absolute border top-0 left-0 border-red-500" ></div>
+                    <div className="w-full h-full absolute top-0 left-0" ></div>
                 </div>
 
                 <div className="right w-full flex-grow p-2 gap-1">

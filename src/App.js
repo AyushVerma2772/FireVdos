@@ -25,22 +25,23 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div className="box-border h-screen bg-white text-black dark:bg-black dark:text-white overflow-hidden">
+      <div className="box-border bg-white text-black dark:bg-black dark:text-white overflow-hidden">
         <Header setShowNav={setShowNav} />
         <main className="relative flex">
           <Navbar showNav={showNav} setShowNav={setShowNav} />
-          <section className="">
+          <section>
             
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/trending" element={<Trending />} />
-                <Route path="/like" element={<ProtectedRoute><LikedVideos /></ProtectedRoute>} />
+                <Route path="/liked" element={<ProtectedRoute><LikedVideos /></ProtectedRoute>} />
                 <Route path="/search/:searchValue" element={<SearchPage />} />
                 <Route path="/watch/:videoID" element={<Watch />} />
                 <Route path="/channel/:channelID" element={<Channel />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </Routes>
           </section>
+        
         </main>
       </div>
     </BrowserRouter>

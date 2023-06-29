@@ -5,6 +5,10 @@
     @apply animate-pulse bg-[#e4dede] dark:bg-[#3c3c3c] rounded
 }
 
+.nav-link {
+    @apply w-[90%] d-flex justify-start sm:flex-col gap-3 sm:gap-1 py-3 px-2.5 dark:hover:bg-dark-gray/50 hover:bg-gray-300/40 rounded-md sm:w-16
+}
+
 @tailwind utilities;
 
 
