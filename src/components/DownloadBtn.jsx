@@ -19,9 +19,7 @@ const DownloadBtn = ({ videoId }) => {
 
     return (
         <>
-            <select
-                onChange={(e) => handleDownload(e)}
-                className='p-1 px-2 bg-stone-200/80 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-[#272727]/50 outline-none rounded'
+            <select onChange={(e) => handleDownload(e)} className='cursor-pointer p-1 px-2 bg-stone-200/80 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-[#272727]/50 outline-none rounded'
             >
                 <option className='bg-stone-200/80 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-[#272727]/50' value=''>Download</option>
                 <option className='bg-stone-200/80 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-[#272727]/50' value='144p'>144p</option>
