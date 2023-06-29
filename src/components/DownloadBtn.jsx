@@ -2,7 +2,6 @@ import React from 'react';
 import { fetchFromAPI } from '../fetchAPI';
 
 const DownloadBtn = ({ videoId }) => {
-
     const resObj = { '144p': 0, '360p': 1, '720p': 2 };
 
     const handleDownload = async (e) => {

@@ -26,7 +26,7 @@ const Search = () => {
             <input className='h-full dark:bg-stone-800/80 w-[82%] sm:w-[90%] focus:border focus:border-blue-700 outline-0 text-base py-1 px-3 sm:px-4 invisible sm:visible border-2 dark:border-0 border-r-0 dark:focus:border dark:focus:border-blue-700' type="search" name="" id="" placeholder='Search' />
 
             <button className='h-full d-flex justify-center w-[18%] sm:w-[10%] bg-gray-200/60 hover:bg-gray-300/40 dark:bg-stone-700 dark:hover:bg-stone-700 rounded-full sm:rounded-none border-2 dark:border-0 border-l-0' title='search' >
-                <BsSearch className='text-lg sm:text-xl' />
+                <BsSearch className='text-lg sm:text-xl'/>
             </button>
 
         </form>
