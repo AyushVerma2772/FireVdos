@@ -4,10 +4,9 @@ import App from './App';
 import "./index.css";
 import { AuthContextProvider } from './context/AuthContext';
 import { CountryCodeProvider } from './context/countryCodeContext';
-import { TrendingVdoProvider } from './context/TrendingVdoContext';
 import SearchDataContextProvider from './context/SearchDataContext';
 import { UserDataContextProvider } from './context/UserDataContext';
-import { HomeVdoProvider } from './context/HomeVdoContext';
+import { VideoDataProvider } from './context/VideoDataContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -15,13 +14,13 @@ root.render(
   <AuthContextProvider>
     <CountryCodeProvider>
       <SearchDataContextProvider>
-        <TrendingVdoProvider>
+        <VideoDataProvider>
           <UserDataContextProvider>
-            <HomeVdoProvider>
-              <App />
-            </HomeVdoProvider>
+
+            <App />
+
           </UserDataContextProvider>
-        </TrendingVdoProvider>
+        </VideoDataProvider>
       </SearchDataContextProvider>
     </CountryCodeProvider>
   </AuthContextProvider>

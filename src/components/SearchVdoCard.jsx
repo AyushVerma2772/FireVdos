@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-const SearchVdoCard = ({ videoId, title, channelTitle, time, views, thumbnail, description, richThumbnail, lengthText, channelId, type }) => {
+const SearchVdoCard = ({ videoId, title, channelTitle, time, views, thumbnail, description, lengthText, channelId, type }) => {
     const navigate = useNavigate();
     const [hoverPlay, setHoverPlay] = useState(false);
 
@@ -15,10 +15,10 @@ const SearchVdoCard = ({ videoId, title, channelTitle, time, views, thumbnail, d
     return (
         <>
 
-            <div className="sm:w-4/5 w-[95%] m-auto gap-2 flex flex-col sm:flex-row cursor-pointer" onMouseOver={() => setHoverPlay(true)} onMouseLeave={() => setHoverPlay(false)}>
+            <div className="sm:w-4/5 w-[97%] m-auto gap-2 flex flex-col sm:flex-row cursor-pointer" onMouseOver={() => setHoverPlay(true)} onMouseLeave={() => setHoverPlay(false)}>
 
                 {/* Thumbnail */}
-                <div className="relative h-48 flex justify-center sm:w-[35%] w-full overflow-hidden 2xl:h-60 2xl:w-[30%]" onClick={() => handelNavigation(type)}>
+                <div className="relative h-52 sm:h-48 flex justify-center sm:w-[35%] w-full overflow-hidden 2xl:h-64 2xl:w-[35%]" onClick={() => handelNavigation(type)}>
 
                     {
                         hoverPlay && (type !== 'channel') ?
@@ -28,9 +28,9 @@ const SearchVdoCard = ({ videoId, title, channelTitle, time, views, thumbnail, d
                                 <img className={`${type === 'channel' ? 'w-48 h-48 rounded-full' : 'w-full h-full rounded-xl'}`} src={thumbnail[thumbnail.length - 1].url} alt=""
 
                                     onError={(e) => {
-                                        e.target.src =
-                                            'https://static.vecteezy.com/system/resources/previews/008/506/404/original/contact-person-red-icon-free-png.png';
+                                        e.target.src = "https://firebasestorage.googleapis.com/v0/b/infinity-blogs.appspot.com/o/blogsImages%2Fdmd1688800551223?alt=media&token=7072e12c-c8d7-4368-b3ba-a3db4d04c884";
                                     }}
+
                                 />
 
                                 {lengthText && <span className='absolute rounded-sm py-0.5 px-1 text-xs bg-zinc-950/80 text-white bottom-1 right-1'>{lengthText}</span>}

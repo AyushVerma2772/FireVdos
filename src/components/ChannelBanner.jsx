@@ -1,4 +1,5 @@
 import React from 'react';
+import SubscribeBtn from "../components/SubscribeBtn"
 
 const ChannelBanner = ({ channelData }) => {
   return (
@@ -21,18 +22,23 @@ const ChannelBanner = ({ channelData }) => {
             />
           )}
 
-          <div className="w-full flex flex-col items-center sm:items-start">
-            <p className="max-w-full dot-text dark:text-white text-black text-lg sm:text-xl font-semibold sm:font-medium tracking-wide">
-              {channelData?.title}
-            </p>
+          <div className="w-full flex flex-col items-center sm:items-start ">
 
-            <div className="dark:text-light-gray font-medium text-dark-gray text-sm my-2 flex gap-4 flex-wrap justify-center">
+            <div className="w-full flex flex-col sm:flex-row justify-center items-center sm:justify-start pr-5 gap-2 sm:gap-16 my-2">
+              <p className="max-w-full dot-text dark:text-white text-black text-lg sm:text-xl font-semibold sm:font-medium tracking-wide">
+                {channelData?.title}
+              </p>
+ 
+              <SubscribeBtn channelId={channelData?.channelId} channelName={channelData?.title} channelImgUrl={channelData.avatar[channelData.avatar.length - 1].url} subscriberCount={channelData?.subscriberCountText + " subscribers"} />
+            </div>
+
+            <div className="dark:text-light-gray font-medium text-dark-gray text-sm 2xl:text-base my-2 flex gap-4 flex-wrap justify-center">
               <p>{channelData?.channelHandle}</p>
               <p>{channelData?.subscriberCountText} subscribers</p>
               <p>{channelData?.videosCountText} videos</p>
             </div>
 
-            <p className="max-w-full dot-text dark:text-white/80 text-black text-sm text-center sm:text-start">
+            <p className="max-w-full dot-text dark:text-white/80 text-black 2xl:text-base text-sm text-center sm:text-start">
               {channelData?.description}
             </p>
           </div>

@@ -9,12 +9,18 @@ import SearchPage from './pages/SearchPage';
 import { AuthContext } from './context/AuthContext';
 import Watch from './pages/Watch';
 import Channel from './pages/Channel';
+import Subscriptions from './pages/Subscriptions';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import History from './pages/History';
+
 
 const App = () => {
   const currentUser = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
+      toast.error('You are not login 😫', { position: "top-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "colored", });
       return <Navigate to="/" />;
     }
 
@@ -30,19 +36,24 @@ const App = () => {
         <main className="relative flex">
           <Navbar showNav={showNav} setShowNav={setShowNav} />
           <section>
-            
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/trending" element={<Trending />} />
-                <Route path="/liked" element={<ProtectedRoute><LikedVideos /></ProtectedRoute>} />
-                <Route path="/search/:searchValue" element={<SearchPage />} />
-                <Route path="/watch/:videoID" element={<Watch />} />
-                <Route path="/channel/:channelID" element={<Channel />} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
+
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/trending" element={<Trending />} />
+              <Route path="/liked" element={<ProtectedRoute><LikedVideos /></ProtectedRoute>} />
+              <Route path="/subscriptions" element={<ProtectedRoute><Subscriptions /></ProtectedRoute>} />
+              <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+              <Route path="/search/:searchValue" element={<SearchPage />} />
+              <Route path="/watch/:videoID" element={<Watch />} />
+              <Route path="/channel/:channelID" element={<Channel />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
           </section>
-        
+          
+          <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
+
         </main>
+
       </div>
     </BrowserRouter>
   );

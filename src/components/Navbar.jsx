@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillHome } from "react-icons/ai";
-import {BiSolidLike, BiCodeAlt} from 'react-icons/bi'
-import { ImSwitch } from 'react-icons/im';
+import { BiSolidLike } from 'react-icons/bi'
+import { ImSwitch, ImUsers } from 'react-icons/im';
+import { MdHistory } from "react-icons/md";
 import { FaFire } from "react-icons/fa";
 import ToggleMode from './ToggleMode';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase-config';
+import { AuthContext } from '../context/AuthContext';
+import { handleGoogleSignIn } from './Header';
 
 const Navbar = ({ showNav, setShowNav }) => {
 
@@ -14,38 +17,59 @@ const Navbar = ({ showNav, setShowNav }) => {
         signOut(auth);
     }
 
+    const currentUser = useContext(AuthContext);
+
     return (
         <>
-            <nav className={
-                `absolute z-20 w-1/2 sm:w-auto flex flex-col h-full sm:sticky sm:left-0 dark:bg-black bg-white items-start sm:justify-start py-5 px-2 gap-5 sm:gap-2 ${showNav ? 'left-0' : 'left-[-100%]'}`
-            } onClick={() => setShowNav(prev => !prev)} >
+            <nav className={`absolute z-20 w-3/5 sm:w-auto flex flex-col h-full sm:sticky sm:left-0 dark:bg-black bg-white items-start sm:justify-start py-5 px-2 gap-3 sm:gap-2 md:gap-0 ${showNav ? 'left-0' : 'left-[-100%]'} overflow-auto scrollbar-hide`} onClick={() => setShowNav(prev => !prev)} >
 
                 <Link to='/' className='nav-link' title='Home'>
-                    <AiFillHome className='text-xl' />
+                    <AiFillHome className='text-xl md:text-lg 2xl:text-2xl' />
                     <span className='font-light text-base sm:text-xs'>Home</span>
                 </Link>
 
                 <Link to='/trending' className='nav-link' title='Trending'>
-                    <FaFire className='text-xl' />
+                    <FaFire className='text-xl md:text-lg 2xl:text-2xl' />
                     <span className='font-light text-base sm:text-xs' >Trending</span>
                 </Link>
 
                 <Link to='/liked' className='nav-link' title='Liked videos'>
-                    <BiSolidLike className='text-xl' />
+                    <BiSolidLike className='text-xl md:text-lg 2xl:text-2xl' />
                     <span className='font-light text-base sm:text-xs' >Liked</span>
+                </Link>
+
+                <Link to='/subscriptions' className='nav-link' title='Subscriptions'>
+                    <ImUsers className='text-xl md:text-lg 2xl:text-2xl' />
+                    <span className='font-light text-base sm:text-xs' >Subscriptions</span>
+                </Link>
+
+                <Link to='/history' className='nav-link' title='History'>
+                    <MdHistory className='text-3xl md:text-lg 2xl:text-2xl' />
+                    <span className='font-light text-base sm:text-xs' >History</span>
                 </Link>
 
                 <ToggleMode />
 
-                <button className='nav-link' onClick={handleSignOut} title='Logout'>
-                    <ImSwitch className='text-xl' />
-                    <span className='font-light text-base sm:text-xs'>Logout</span>
-                </button>
+                {
+                    currentUser ? 
+                    <button className='nav-link' onClick={handleSignOut} title='Logout'>
+                        <ImSwitch className='text-xl md:text-lg 2xl:text-2xl' />
+                        <span className='font-light text-base sm:text-xs'>Logout</span>
+                    </button>
 
-                <a href='https://www.ayushverma.live/' rel="noreferrer" target='_blank' className='nav-link' title='Ayush Verma'>
-                    <BiCodeAlt className='text-xl' />
+                    :
+
+                    <button className='nav-link' onClick={handleGoogleSignIn} title='Logout'>
+                        <ImSwitch className='text-xl md:text-lg 2xl:text-2xl' />
+                        <span className='font-light text-base sm:text-xs'>Login</span>
+                    </button>
+
+                }
+
+                {/* <a href='https://www.ayushverma.live/' rel="noreferrer" target='_blank' className='nav-link' title='Ayush Verma'>
+                    <BiCodeAlt className='text-2xl md:text-lg 2xl:text-2xl' />
                     <span className='font-light text-base sm:text-xs' >Ayush</span>
-                </a>
+                </a> */}  
 
             </nav>
         </>

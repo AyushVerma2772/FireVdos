@@ -12,7 +12,7 @@ const Slider = ({ category, updateCategory }) => {
 
     return (
         <>
-            <div className="h-12 w-full sm:h-14 px-3 sticky top-0 dark:bg-black bg-white flex items-center gap-3 sm:gap-4 text-sm sm:text-[15px] overflow-x-auto scrollbar-hide scroll-smooth z-10">
+            <div className="h-12 w-full sm:h-14 px-3 sticky top-0 dark:bg-black bg-white flex items-center gap-3 sm:gap-4 text-sm sm:text-[15px] overflow-x-auto scrollbar-hide scroll-smooth z-[5]">
 
                 {
                     categoriesList.map((ele, i) => (

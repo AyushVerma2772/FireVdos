@@ -3,14 +3,14 @@ import Slider from '../components/Slider';
 import VideoContainer from '../components/VideoContainer';
 import { fetchFromAPI } from '../fetchAPI';
 import { CountryCodeContext } from '../context/countryCodeContext';
-import { HomeVdoContext } from '../context/HomeVdoContext';
+import { VideoDataContext } from '../context/VideoDataContext';
 
 const Home = () => {
 
     const [category, setCategory] = useState(null);
     const countryCode = useContext(CountryCodeContext);
     const [loading, setLoading] = useState(false);
-    const homeVdos = useContext(HomeVdoContext);
+    const { homeVdos } = useContext(VideoDataContext);
     const [videos, setVideos] = useState([]);
 
     const getDataFromApi = async () => {
@@ -41,7 +41,7 @@ const Home = () => {
 
     return (
         <>
-            <div className="w-full max-w-full max-h-full overflow-auto">
+            <div className="w-full max-w-full max-h-full overflow-auto scrollbar-hide md:scrollbar-default">
                 <Slider category={category} updateCategory={setCategory} />
 
                 <VideoContainer loading={loading} videos={videos} />

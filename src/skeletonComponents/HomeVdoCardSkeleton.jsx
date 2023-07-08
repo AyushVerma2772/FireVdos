@@ -5,7 +5,7 @@ const HomeVdoCardSkeleton = () => {
 
     return (
         <>
-            <div className='w-11/12 z-0'>
+            <div className='w-11/12 2xl:w-[95%] z-0'>
                 <div className='skeleton-loading w-full h-52 2xl:h-56 rounded-md' />
 
                 <div className="content flex w-full">

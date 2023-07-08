@@ -3,8 +3,8 @@ import React from 'react';
 const SearchVdoCardSkeleton = () => {
     return (
         <>
-            <div className="w-4/5 gap-2 flex flex-col sm:flex-row cursor-pointer">
-                <div className="h-48 sm:w-[35%] w-full">
+            <div className="sm:w-4/5 w-[95%] gap-2 flex flex-col sm:flex-row cursor-pointer">
+                <div className="h-48 2xl:h-64 sm:w-[35%] w-full">
                     <div className="skeleton-loading w-full h-full rounded-xl" />
                 </div>
 

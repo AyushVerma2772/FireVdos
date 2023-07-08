@@ -32,13 +32,11 @@ const Watch = () => {
 
     return (
         <>
-
-            <div className="lg:flex w-full max-w-full max-h-full overflow-auto">
+            <div className="lg:flex w-full max-w-full max-h-full overflow-auto scrollbar-hide md:scrollbar-default">
                 <VideoArea loading={loading} videoData={videoData} />
 
                 <RelatedVdos loading={loading} relatedVdos={relatedVdos} />
             </div>
-
         </>
     )
 }

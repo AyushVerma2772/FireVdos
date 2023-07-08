@@ -1,35 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import VideoContainer from '../components/VideoContainer';
-import { fetchFromAPI } from '../fetchAPI';
-import { CountryCodeContext } from '../context/countryCodeContext';
-import { TrendingVdoContext } from '../context/TrendingVdoContext';
+import { VideoDataContext } from '../context/VideoDataContext';
 
 const Trending = () => {
-  const { trendingVdos, updateTrendingVdos } = useContext(TrendingVdoContext);
-  const countryCode = useContext(CountryCodeContext);
+  const { trendingVdos } = useContext(VideoDataContext);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const getDataFromApi = async () => {
-      setLoading(true);
-      if (countryCode) {
-        const apiData = await fetchFromAPI(`trending?geo=${countryCode}`);
-        updateTrendingVdos(apiData.data);
-      }
-      setLoading(false);
-    };
 
-    // Check if the trending videos data is already available and if data is already available then api call karne ki need nhi ha
-    if (trendingVdos.length === 0) {
-      getDataFromApi();
-    }
+    if (trendingVdos) setLoading(false)
+    else setLoading(true)
 
-    // eslint-disable-next-line
-  }, [countryCode, trendingVdos]);
+  }, [trendingVdos])
+
 
   return (
     <>
-      <div className="w-full max-w-full max-h-full overflow-auto">
+      <div className="w-full max-w-full max-h-full overflow-auto scrollbar-hide md:scrollbar-default">
         <h2 className="dark:text-white text-black m-4 text-2xl md:text-3xl">Trending videos</h2>
         <VideoContainer loading={loading} videos={trendingVdos} />
       </div>

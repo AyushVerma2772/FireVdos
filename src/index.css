@@ -88,6 +88,31 @@ section {
     width: calc(100% - 5rem);
 }
 
+@keyframes widthAnimation {
+    0% {
+      width: 0%;
+    }
+    25% {
+      width: 25%;
+    }
+    50% {
+      width: 25%;
+    }
+    75% {
+      width: 75%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  .loader {
+    width: 0%;
+    animation: widthAnimation 1s linear;
+    background: linear-gradient(90deg, rgb(255, 0, 0) 35%, rgba(0,82,255,1) 84%);
+
+  }
+
 .dot-text {
     overflow: hidden;
     display: -webkit-box;
@@ -109,3 +134,7 @@ pre {
     white-space: pre-wrap;
     word-break: keep-all
 }
+
+
+
+
