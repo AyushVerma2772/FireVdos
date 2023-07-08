@@ -117,7 +117,7 @@ const VideoArea = ({ loading, videoData }) => {
                                     {/* Liked button */}
                                     {
                                         videoData?.likeCount && <button className='dark:text-white bg-stone-200 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-zinc-700/70 px-3 rounded-3xl text-base d-flex gap-2' onClick={handleLike}>
-                                            <AiOutlineLike className='py-1 pr-2 border-r text-3xl' />
+                                            <AiOutlineLike className='py-1 pr-2 border-r border-dark-gray text-3xl' />
 
                                             {/* Agar user ne video ko like kara ha to 'Liked' dikhna chahiye else like counts */}
                                             <span>

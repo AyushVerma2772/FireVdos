@@ -8,7 +8,7 @@ const SuggestionBox = ({ suggestedData, setSearchValue, setIsFocused, setIsHover
 
     return (
         <>
-            <div className={`dark:bg-[#272727] bg-white z-[100] absolute top-10 right-[3%] sm:left-0 sm:w-[85%] w-[95vw] shadow rounded-md overflow-hidden`} onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
+            <div className={`dark:bg-[#272727] bg-white z-[100] absolute top-10 left-[-30%] sm:left-0 sm:w-[85%] w-[90vw] shadow rounded-md overflow-hidden`} onMouseOver={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)}>
 
                 {
                     suggestedData.map((ele, i) => (

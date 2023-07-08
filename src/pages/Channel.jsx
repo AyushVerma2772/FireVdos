@@ -42,16 +42,17 @@ const Channel = () => {
 
 
 
-                <div className="w-full py-1 pb-2 bg-white dark:bg-black mt-6 px-5 sticky top-0 z-[5]">
-                    <button className={`text-base mx-2 p-1 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'videos' && 'border-b-2'}`} onClick={() => setCategory("videos")}>Videos</button>
-                    <button className={`text-base mx-2 p-1 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'playlists' && 'border-b-2'}`} onClick={() => setCategory("playlists")}>Playlists</button>
-                    <button className={`text-base mx-2 p-1 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'liveStreams' && 'border-b-2'}`} onClick={() => setCategory("liveStreams")}>Live Streams</button>
-                    <button className={`text-base mx-2 p-1 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'shorts' && 'border-b-2'}`} onClick={() => setCategory("shorts")}>Shorts</button>
+                <div className="w-full bg-white dark:bg-black mt-6 px-5 sticky top-0 z-[5] border-b border-dark-gray">
+
+                    <button className={`text-base mx-2 p-1 pb-2 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'videos' && 'border-b-2'}`} onClick={() => setCategory("videos")}>Videos</button>
+                    <button className={`text-base mx-2 p-1 pb-2 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'playlists' && 'border-b-2'}`} onClick={() => setCategory("playlists")}>Playlists</button>
+                    <button className={`text-base mx-2 p-1 pb-2 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'liveStreams' && 'border-b-2'}`} onClick={() => setCategory("liveStreams")}>Live Streams</button>
+                    <button className={`text-base mx-2 p-1 pb-2 text-dark-gray dark:text-light-gray border-black dark:border-white ${category === 'shorts' && 'border-b-2'}`} onClick={() => setCategory("shorts")}>Shorts</button>
                 </div>
 
 
                 {/* Channel videos */}
-                <div className="dark:bg-black bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5 my-4">
+                <div className="dark:bg-black bg-white p-1.5 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5 my-4">
                     {videoData && !loading ? (
                         videoData.map((ele, index) => {
 

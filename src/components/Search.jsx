@@ -62,7 +62,7 @@ const Search = () => {
 
         if (query.trim().length) {
             const script = document.createElement('script');
-            script.src = `http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${query}&callback=handleSuggestionCallback`;
+            script.src = `https://suggestqueries.google.com/complete/search?client=youtube&ds=yt&q=${query}&callback=handleSuggestionCallback`;
             document.body.appendChild(script);
         }
     };

@@ -44,7 +44,7 @@ const Navbar = ({ showNav, setShowNav }) => {
                 </Link>
 
                 <Link to='/history' className='nav-link' title='History'>
-                    <MdHistory className='text-3xl md:text-lg 2xl:text-2xl' />
+                    <MdHistory className='text-xl md:text-lg 2xl:text-2xl' />
                     <span className='font-light text-base sm:text-xs' >History</span>
                 </Link>
 

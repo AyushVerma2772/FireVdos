@@ -10,7 +10,7 @@ const ChannelVdoCard = ({ videoId, title, time, views, thumbnail, richThumbnail,
 
     return (
         <>
-            <div className='cursor-pointer dark:bg-black bg-white w-11/12 p-1' onMouseOver={() => setHoverPlay(true)} onMouseLeave={() => setHoverPlay(false)}>
+            <div className='cursor-pointer dark:bg-black bg-white w-[97%] md:w-11/12 2xl:w-[95%] p-1' onMouseOver={() => setHoverPlay(true)} onMouseLeave={() => setHoverPlay(false)}>
 
                 {/* Thumbnail */}
                 <div className="w-full h-52 lg:h-36  relative" onClick={() => { navigate(`/watch/${videoId}`) }}>

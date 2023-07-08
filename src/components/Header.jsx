@@ -51,7 +51,7 @@ const Header = ({ setShowNav }) => {
 
 
     return (
-        <header className='dark:bg-black bg-white w-full d-flex justify-between px-1 md:px-6 sticky top-0 z-10' >
+        <header className='dark:bg-black bg-white w-full d-flex justify-between px-2 md:px-6 sticky top-0 z-10' >
             <div className="left flex gap-2 md:gap-3">
                 <button onClick={() => setShowNav(prev => !prev)} >
                     <AiOutlineMenu className='text-2xl sm:hidden' />

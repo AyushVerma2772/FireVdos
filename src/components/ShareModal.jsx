@@ -4,6 +4,7 @@ import { BsFacebook, BsReddit, BsTwitter } from 'react-icons/bs';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { PiShareFatFill } from "react-icons/pi";
 import { RxCross1 } from "react-icons/rx";
+import { toast } from 'react-toastify';
 
 const ShareModal = ({ title }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -31,7 +32,9 @@ const ShareModal = ({ title }) => {
 
                         <div className='w-full flex justify-between'>
                             <input type='text' readOnly={true} className='w-[80%] bg-white/75 border outline-none p-1 px-2 border-black dark:bg-black/60 dark:border-white' value={currentUrl} />
-                            <button className='bg-purple-700 text-white px-3 py-1 rounded-md text-base d-flex gap-2' onClick={() => navigator.clipboard.writeText(currentUrl)} >Copy</button>
+                            <button className='bg-purple-700 text-white px-3 py-1 rounded-md text-base d-flex gap-2' onClick={() => {
+                                toast.success('Link copied 🤘🏻', { position: "top-center", autoClose: 1000, hideProgressBar: true, closeOnClick: true, pauseOnHover: false, draggable: true, theme: "colored",}); navigator.clipboard.writeText(currentUrl)
+                            }} >Copy</button>
                         </div>
 
                         <div className='mt-4 w-full d-flex justify-around'>

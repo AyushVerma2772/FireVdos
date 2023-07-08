@@ -13,16 +13,17 @@ const VideoDataProvider = ({ children }) => {
     useEffect(() => {
         const getHomeVdosFromApi = async () => {
             const apiData = await fetchFromAPI(`home?geo=${countryCode}`);
-            setHomeVdos(apiData.data);
+            setHomeVdos(prev => [...prev, ...apiData.data]);
         };
 
         const getTrendingVdosFromApi = async () => {
             const apiData = await fetchFromAPI(`trending?geo=${countryCode}`);
-            setTrendingVdos(apiData.data);
+            setTrendingVdos(prev => [...apiData.data, ...prev]);
         };
 
         getHomeVdosFromApi();
         getTrendingVdosFromApi();
+
     }, [countryCode]);
 
     return (
