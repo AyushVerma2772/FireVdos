@@ -52,7 +52,7 @@ const Channel = () => {
 
 
                 {/* Channel videos */}
-                <div className="dark:bg-black bg-white p-1.5 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5 my-4">
+                <div className="dark:bg-black bg-white p-1.5 md:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 justify-items-center gap-5 my-4">
                     {videoData && !loading ? (
                         videoData.map((ele, index) => {
 

@@ -75,10 +75,10 @@ nav {
     width: 5rem;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 640px) {
     section {
         height: 100% !important;
-        width: 100vw !important;
+        width: 100% !important
     }
 
 }
@@ -90,28 +90,32 @@ section {
 
 @keyframes widthAnimation {
     0% {
-      width: 0%;
+        width: 0%;
     }
+
     25% {
-      width: 25%;
+        width: 25%;
     }
+
     50% {
-      width: 25%;
+        width: 25%;
     }
+
     75% {
-      width: 75%;
+        width: 75%;
     }
+
     100% {
-      width: 100%;
+        width: 100%;
     }
-  }
-  
-  .loader {
+}
+
+.loader {
     width: 0%;
     animation: widthAnimation 1s linear;
-    background: linear-gradient(90deg, rgb(255, 0, 0) 35%, rgba(0,82,255,1) 84%);
+    background: linear-gradient(90deg, rgb(255, 0, 0) 35%, rgba(0, 82, 255, 1) 84%);
 
-  }
+}
 
 .dot-text {
     overflow: hidden;
@@ -134,7 +138,3 @@ pre {
     white-space: pre-wrap;
     word-break: keep-all
 }
-
-
-
-

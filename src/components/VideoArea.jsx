@@ -93,7 +93,7 @@ const VideoArea = ({ loading, videoData }) => {
 
                             {/* Youtube iframe */}
                             <div className="w-full h-64 sm:h-[45vh] md:h-[55vh] xl:h-[75vh] mb-3">
-                                <iframe height={"100%"} width={"100%"} src={`https://www.youtube.com/embed/${videoData?.videoId}?autoplay=1`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                <iframe height={"100%"} width={"100%"} src={`https://www.youtube.com/embed/${videoData?.videoId}?autoplay=1&rel=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                             </div>
 
                             {/* title */}

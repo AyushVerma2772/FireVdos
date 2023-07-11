@@ -10,11 +10,13 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { AuthContext } from '../context/AuthContext';
 import { handleGoogleSignIn } from './Header';
+import { toast } from 'react-toastify';
 
 const Navbar = ({ showNav, setShowNav }) => {
 
     const handleSignOut = () => {
         signOut(auth);
+        toast.success('Log out successful 🤘🏻 ', { position: "top-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "colored", });
     }
 
     const currentUser = useContext(AuthContext);
@@ -51,25 +53,25 @@ const Navbar = ({ showNav, setShowNav }) => {
                 <ToggleMode />
 
                 {
-                    currentUser ? 
-                    <button className='nav-link' onClick={handleSignOut} title='Logout'>
-                        <ImSwitch className='text-xl md:text-lg 2xl:text-2xl' />
-                        <span className='font-light text-base sm:text-xs'>Logout</span>
-                    </button>
+                    currentUser ?
+                        <button className='nav-link' onClick={handleSignOut} title='Logout'>
+                            <ImSwitch className='text-xl md:text-lg 2xl:text-2xl' />
+                            <span className='font-light text-base sm:text-xs'>Log out</span>
+                        </button>
 
-                    :
+                        :
 
-                    <button className='nav-link' onClick={handleGoogleSignIn} title='Logout'>
-                        <ImSwitch className='text-xl md:text-lg 2xl:text-2xl' />
-                        <span className='font-light text-base sm:text-xs'>Login</span>
-                    </button>
+                        <button className='nav-link' onClick={handleGoogleSignIn} title='Logout'>
+                            <ImSwitch className='text-xl md:text-lg 2xl:text-2xl' />
+                            <span className='font-light text-base sm:text-xs'>Login</span>
+                        </button>
 
                 }
 
                 {/* <a href='https://www.ayushverma.live/' rel="noreferrer" target='_blank' className='nav-link' title='Ayush Verma'>
                     <BiCodeAlt className='text-2xl md:text-lg 2xl:text-2xl' />
                     <span className='font-light text-base sm:text-xs' >Ayush</span>
-                </a> */}  
+                </a> */}
 
             </nav>
         </>

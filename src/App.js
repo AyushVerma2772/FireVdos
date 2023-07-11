@@ -11,8 +11,8 @@ import Watch from './pages/Watch';
 import Channel from './pages/Channel';
 import Subscriptions from './pages/Subscriptions';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import History from './pages/History';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {

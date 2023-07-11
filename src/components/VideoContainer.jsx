@@ -11,7 +11,7 @@ const VideoContainer = ({ videos, loading }) => {
     return (
         <>
 
-            <div className='dark:bg-black bg-white p-1.5 md:p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-5'>
+            <div className='dark:bg-black bg-white p-1.5 md:p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-5'>
                 {
                     !loading && videos && videos.length !== 0 ?
                         videos.map((ele, i) => {
