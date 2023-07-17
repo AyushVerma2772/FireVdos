@@ -17,8 +17,8 @@ const Slider = ({ category, updateCategory }) => {
                 {
                     categoriesList.map((ele, i) => (
                         <button key={i} className={
-                            `bg-gray-200/90 hover:bg-gray-300 dark:bg-dark-gray/40 dark:hover:bg-light-gray/40 py-1 px-2.5 rounded-md flex-shrink-0 ${category === ele ? 'dark:text-black dark:bg-white bg-gray-950 text-white dark:hover:bg-white hover:bg-gray-950' : ''}`
-                        } onClick={() => handleCategoryChange(ele)} >{ele}</button>
+                            `bg-gray-200/90 hover:bg-gray-300 dark:bg-dark-gray/40 dark:hover:bg-light-gray/40 py-1 px-2.5 rounded-md flex-shrink-0 ${category === ele ? 'dark:text-black dark:bg-white bg-gray-950 text-white dark:hover:bg-white hover:bg-gray-950' : ''}`}
+                            onClick={() => handleCategoryChange(ele)} title={ele} >{ele}</button>
                     ))
                 }
 

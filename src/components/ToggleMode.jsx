@@ -15,6 +15,7 @@ const ToggleMode = () => {
     const toggleTheme = () => {
         theme === 'light' ? setTheme('dark') : setTheme('light')
     }
+    
     return (
         <>
             <button className='nav-link' onClick={toggleTheme} title={`${theme === 'light' ? 'Dark' : 'Light'} mode`}>

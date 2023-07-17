@@ -12,12 +12,12 @@ const SuggestionBox = ({ suggestedData, setSearchValue, setIsFocused, setIsHover
 
                 {
                     suggestedData.map((ele, i) => (
-                        <div key={i} className='w-full hover:dark:bg-zinc-700/50 hover:bg-stone-200/80 d-flex gap-2 cursor-pointer p-2 md:gap-1 md:py-1' onMouseOver={() => setSearchValue(ele[0])} onClick={() => {
+                        <div key={i} className='w-full hover:dark:bg-zinc-700/50 hover:bg-stone-200/80 d-flex gap-2 cursor-pointer p-2 md:gap-1 md:py-1'onClick={() => {
                             setSearchValue("");
                             setIsFocused(false);
                             navigate(`/search/${ele[0]}`);
                         }}>
-                            <AiOutlineSearch className='text-xl font-extralight' />
+                            <AiOutlineSearch className='text-xl font-extralight opacity-50 mr-1' />
                             <h3 className='dot-text' >{ele[0]}</h3>
                         </div>
                     ))

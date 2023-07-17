@@ -22,22 +22,14 @@ const Search = () => {
     e.preventDefault();
 
     if (searchValue.trim().length) {
-      const regex = /v=([^&]+)/;
-      const match = searchValue.match(regex);
-
-      if (match) {
-        const videoId = match[1];
-        console.log(videoId);
-        navigate(`/search/${videoId}`);
-      } else {
-        navigate(`/search/${searchValue}`);
-      }
+      navigate(`/search/${searchValue}`);
     } else {
       e.target[0].classList.toggle("invisible");
       e.target[1].classList.toggle("rounded-full");
     }
 
     e.target[0].value = "";
+    setSearchValue("")
     setSuggestedData([]); // Reset suggestedData when search is performed
   };
 
@@ -100,7 +92,7 @@ const Search = () => {
                 setSuggestedData([]);
               }
             }}
-            
+
             onChange={(e) => handleSuggestion(e.target.value)}
             value={searchValue}
           />

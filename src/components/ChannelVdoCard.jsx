@@ -13,10 +13,10 @@ const ChannelVdoCard = ({ videoId, title, time, views, thumbnail, richThumbnail,
             <div className='cursor-pointer dark:bg-black bg-white w-[97%] md:w-11/12 2xl:w-[95%] p-1' onMouseOver={() => setHoverPlay(true)} onMouseLeave={() => setHoverPlay(false)}>
 
                 {/* Thumbnail */}
-                <div className="w-full h-52 lg:h-36  relative" onClick={() => { navigate(`/watch/${videoId}`) }}>
+                <div className="w-full h-52 lg:h-36 relative" onClick={() => { navigate(`/watch/${videoId}`)}}>
                     {
                         hoverPlay ?
-                            <iframe className='w-full h-full' src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&modestbranding=0&controls=0`} title='fire-vdos' frameBorder="0" allow="autoplay" ></iframe>
+                            <iframe className='w-full h-full ' src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&modestbranding=0&controls=0`} title='fire-vdos' frameBorder="0" allow="autoplay" ></iframe>
                             :
                             <>
                                 <img className='w-full object-contain h-full rounded-md' src={thumbnail[thumbnail.length - 1].url} alt="" />

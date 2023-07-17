@@ -29,7 +29,7 @@ const HomeVdoCard = ({ videoId, title, channelTitle, time, views, channelPhoto, 
                 <div className="content flex w-full">
                     {/* channel photo */}
                     <div className="left w-[13%] d-flex">
-                        <img className='w-10 h-10 rounded-full' src={channelPhoto[channelPhoto.length - 1].url} alt="channel-pic" onClick={() => { navigate(`/channel/${channelId}`) }} />
+                        <img className='w-10 h-10 rounded-full' src={channelPhoto[channelPhoto.length - 1].url} alt="channel-pic" title={channelTitle} onClick={() => { navigate(`/channel/${channelId}`) }} />
                     </div>
 
                     <div className="right w-[87%] flex-grow p-2 gap-1">
@@ -37,7 +37,7 @@ const HomeVdoCard = ({ videoId, title, channelTitle, time, views, channelPhoto, 
                         {title && <p className='max-w-full dot-text dark:text-white text-black text-base font-semibold tracking-wide' onClick={() => { navigate(`/watch/${videoId}`) }}>{title}</p>}
 
                         {/* Channel Name*/}
-                        <Link to={`/channel/${channelId}`} className='dark:text-light-gray text-dark-gray text-sm dark:hover:text-white hover:text-black'>{channelTitle}</Link>
+                        <Link to={`/channel/${channelId}`} className='dark:text-light-gray text-dark-gray text-sm dark:hover:text-white hover:text-black' title={channelTitle}>{channelTitle}</Link>
 
                         {/* Video info */}
                         <p className='dark:text-light-gray text-dark-gray text-sm'>

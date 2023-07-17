@@ -11,14 +11,20 @@ import { db } from '../firebase-config';
 import SubscribeBtn from './SubscribeBtn';
 import { toast } from 'react-toastify';
 import ShareModal from './ShareModal';
+import ReactPlayer from 'react-player';
 
-const VideoArea = ({ loading, videoData }) => {
+const VideoArea = ({ loading, videoData, nextVideoID }) => {
 
     const [showMore, setShowMore] = useState(false);
     const currentUser = useContext(AuthContext);
     const userData = useContext(UserDataContext);
     const navigate = useNavigate();
+    const [isAutoPlay, setIsAutoPlay] = useState(
+        localStorage.getItem('autoplay') === 'true' || false
+    );
 
+
+    // Creating text to link which are present in description
     const createLinks = (text) => {
         if (text) {
             const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -35,6 +41,7 @@ const VideoArea = ({ loading, videoData }) => {
         }
     }
 
+    // handleLikes of the video
     const handleLike = async () => {
         if (currentUser && userData) {
             const docRef = doc(db, "users", currentUser.uid);
@@ -58,7 +65,7 @@ const VideoArea = ({ loading, videoData }) => {
 
     }
 
-
+    // checking video is present in user history or not
     const checkHistory = async () => {
         if (currentUser && userData && userData.history && videoData) {
             const docRef = doc(db, "users", currentUser.uid);
@@ -81,7 +88,25 @@ const VideoArea = ({ loading, videoData }) => {
         checkHistory();
 
         // eslint-disable-next-line
-    }, [currentUser, userData, videoData])
+    }, [currentUser, userData, videoData]);
+
+
+    useEffect(() => {
+        localStorage.setItem('autoplay', isAutoPlay);
+    }, [isAutoPlay]);
+
+    // When Autoplay is then play next video
+    const playNextVideo = () => {
+        if (isAutoPlay) {
+            setTimeout(() => {
+                navigate(`/watch/${nextVideoID}`)
+            }, 1500);
+        }
+    }
+
+    const handleAutoPlay = () => {
+        setIsAutoPlay(!isAutoPlay);
+    };
 
 
     return (
@@ -89,21 +114,21 @@ const VideoArea = ({ loading, videoData }) => {
             {
                 !loading ?
                     <div className="w-full lg:w-[70%]">
-                        <div className="gap-2 p-5 flex-col w-full">
+                        <div className="gap-2 p-2 md:p-3 lg:p-5 flex-col w-full">
 
                             {/* Youtube iframe */}
                             <div className="w-full h-64 sm:h-[45vh] md:h-[55vh] xl:h-[75vh] mb-3">
-                                <iframe height={"100%"} width={"100%"} src={`https://www.youtube.com/embed/${videoData?.videoId}?autoplay=1&rel=0`} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                                <ReactPlayer url={`https://www.youtube.com/watch?v=${videoData?.videoId}`} width="100%" height="100%" controls={true} playing={true} pip={true} onEnded={playNextVideo} />
                             </div>
 
                             {/* title */}
                             <p className='dot-text max-w-[95%] dark:text-white text-black md:text-xl text-base font-semibold tracking-wide mb-3'>{videoData?.title}</p>
 
 
-                            <div className="my-5 w-full flex flex-wrap justify-between items-center gap-4">
+                            <div className="my-5">
 
                                 {/* Channel info */}
-                                <div className="d-flex flex-wrap gap-10 sm:w-auto w-full justify-between">
+                                <div className="mb-4 md:mb-5 d-flex gap-2 w-full justify-between">
                                     <div className='d-flex gap-3 cursor-pointer' title={videoData?.channelTitle}>
                                         <img className='w-10 h-10 rounded-full' src={videoData?.channelThumbnail[videoData?.channelThumbnail.length - 1].url} alt="" onClick={() => navigate(`/channel/${videoData?.channelId}`)} />
 
@@ -113,7 +138,7 @@ const VideoArea = ({ loading, videoData }) => {
                                     <SubscribeBtn channelId={videoData?.channelId} channelName={videoData?.channelTitle} channelImgUrl={videoData?.channelThumbnail[videoData?.channelThumbnail.length - 1].url} subscriberCount={videoData?.subscriberCountText} />
                                 </div>
 
-                                <div className="d-flex gap-5 md:gap-8 lg:gap-10 2xl:gap-12 flex-wrap w-full md:w-auto justify-between">
+                                <div className="d-flex gap-3 flex-wrap w-full justify-between">
                                     {/* Liked button */}
                                     {
                                         videoData?.likeCount && <button className='dark:text-white bg-stone-200 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-zinc-700/70 px-3 rounded-3xl text-base d-flex gap-2' onClick={handleLike}>
@@ -131,6 +156,14 @@ const VideoArea = ({ loading, videoData }) => {
 
                                         </button>
                                     }
+
+                                    {/* Autoplay Button */}
+                                    <label className="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" value="" className="sr-only peer" onChange={handleAutoPlay} checked={isAutoPlay} />
+                                        <div className="w-9 h-5 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                        <span className="ml-3 text-sm font-medium">Autoplay</span>
+                                    </label>
+
 
                                     {/* Share Button */}
                                     <ShareModal title={videoData?.title} />
@@ -159,7 +192,7 @@ const VideoArea = ({ loading, videoData }) => {
 
                     // Skeleton of video Area
                     <>
-                        <div className='loader fixed w-full h-0.5 left-0 top-0 bg-[#FF0000] z-[9999]' />
+                        <div className='loader fixed w-full h-0.5 left-0 top-0 bg-[#FF0000] z-[9999' />
                         <VideoAreaSkeleton />
                     </>
             }
