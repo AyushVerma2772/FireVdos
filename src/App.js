@@ -6,17 +6,18 @@ import Home from './pages/Home';
 import Trending from './pages/Trending';
 import LikedVideos from './pages/LikedVideos';
 import SearchPage from './pages/SearchPage';
-import { AuthContext } from './context/AuthContext';
 import Watch from './pages/Watch';
 import Channel from './pages/Channel';
 import Subscriptions from './pages/Subscriptions';
 import { ToastContainer, toast } from 'react-toastify';
 import History from './pages/History';
 import 'react-toastify/dist/ReactToastify.css';
+import { ReactQueryDevtools } from "react-query/devtools"
+import { CurrentUserContext } from './context/CurrentUserContext';
 
 
 const App = () => {
-  const currentUser = useContext(AuthContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -37,6 +38,7 @@ const App = () => {
           <Navbar showNav={showNav} setShowNav={setShowNav} />
           <section>
 
+
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/trending" element={<Trending />} />
@@ -49,11 +51,12 @@ const App = () => {
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
           </section>
-          
+
           <ToastContainer position="top-center" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
 
         </main>
 
+        <ReactQueryDevtools />
       </div>
     </BrowserRouter>
   );

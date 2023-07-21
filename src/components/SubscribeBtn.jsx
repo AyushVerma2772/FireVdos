@@ -1,15 +1,13 @@
 import React, { useContext } from 'react'
-import { UserDataContext } from '../context/UserDataContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase-config';
-import { AuthContext } from '../context/AuthContext';
 import { BiSolidBellRing } from "react-icons/bi";
 import { toast } from 'react-toastify';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
 const SubscribeBtn = ({ channelId, channelName, channelImgUrl, subscriberCount }) => {
 
-    const userData = useContext(UserDataContext);
-    const currentUser = useContext(AuthContext);
+    const { currentUser, currentUserData } = useContext(CurrentUserContext);
     const obj = { channelId, channelName, channelImgUrl, subscriberCount };
 
     const checkObj = (array) => {
@@ -22,7 +20,7 @@ const SubscribeBtn = ({ channelId, channelName, channelImgUrl, subscriberCount }
         if (currentUser) {
 
             const docRef = doc(db, "users", currentUser?.uid);
-            const { subscribedChannels } = userData;
+            const { subscribedChannels } = currentUserData;
 
             if (checkObj(subscribedChannels)) {
                 const index = subscribedChannels.findIndex(channel => {
@@ -52,7 +50,7 @@ const SubscribeBtn = ({ channelId, channelName, channelImgUrl, subscriberCount }
         <>
             <button className='dark:text-black hover:dark:bg-stone-200 font-medium hover:bg-[#272727] text-white bg-black dark:bg-white px-3 py-1.5 md:py-2 md:px-4 rounded-3xl text-sm md:text-base d-flex gap-3 ' onClick={handelSubscribe}>
                 {
-                    userData && userData.subscribedChannels && checkObj(userData.subscribedChannels) ?
+                    currentUserData && currentUserData.subscribedChannels && checkObj(currentUserData.subscribedChannels) ?
                         <>
                             Subscribed
                             <BiSolidBellRing className='text-xl' />

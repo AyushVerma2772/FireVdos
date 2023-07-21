@@ -3,7 +3,6 @@ import logo from '../images/fire-vods-logo.png';
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { BiVideoPlus } from 'react-icons/bi';
 import Search from './Search';
-import { AuthContext } from '../context/AuthContext';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, db, gProvider } from '../firebase-config';
 import { AiOutlineMenu } from 'react-icons/ai';
@@ -11,6 +10,7 @@ import { CountryCodeContext } from '../context/countryCodeContext';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
 
 export const handleGoogleSignIn = async () => {
@@ -45,7 +45,7 @@ export const handleGoogleSignIn = async () => {
 
 const Header = ({ setShowNav }) => {
 
-    const currentUser = useContext(AuthContext);
+    const { currentUser } = useContext(CurrentUserContext);
     const countryCode = useContext(CountryCodeContext);
 
 

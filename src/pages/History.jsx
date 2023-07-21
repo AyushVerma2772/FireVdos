@@ -1,52 +1,50 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { fetchFromAPI } from '../fetchAPI';
-import { UserDataContext } from '../context/UserDataContext';
 import HomeVdoCard from '../components/HomeVdoCard';
 import HomeVdoCardSkeleton from '../skeletonComponents/HomeVdoCardSkeleton';
-import { MdAutoDelete, MdDelete } from "react-icons/md"
-import { AuthContext } from '../context/AuthContext';
+import { MdAutoDelete, MdDelete } from "react-icons/md";
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import Sort from '../components/Sort';
+import { useQuery } from 'react-query';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
 const History = () => {
 
-    const [videos, setVideos] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const userData = useContext(UserDataContext);
+    const { currentUser, currentUserData } = useContext(CurrentUserContext);
+    const [videos, setVideos] = useState();
     const array = Array(12).fill(0);
-    const currentUser = useContext(AuthContext);
 
-    // console.log(userData)
+
+    const getDataFromApi = async () => {
+        const videoIds = currentUserData?.history?.join(",") || "";
+
+        if (videoIds) {
+            const apiData = await fetchFromAPI(`video/info?id=${videoIds}`);
+
+            if (currentUserData?.history?.length === 1) return [apiData];
+            else return apiData.data;
+        }
+
+        return null;
+    };
+
+    const { isLoading, data, refetch } = useQuery("history", getDataFromApi);
 
     useEffect(() => {
-        const getDataFromApi = async () => {
-            setLoading(true);
-
-            if (userData && userData.history && userData.history.length) {
-                const videoIds = userData.history.join(",");
-                const apiData = await fetchFromAPI(`video/info?id=${videoIds}`);
-
-                if (userData.history.length === 1) {
-                    setVideos([apiData]);
-                } else {
-                    setVideos(apiData.data);
-                }
-            }
-
-            setLoading(false);
-        };
-
-
-        getDataFromApi();
+        if (currentUserData && !data) refetch();
 
         // eslint-disable-next-line
-    }, [userData]);
+    }, [currentUserData])
+
+    useEffect(() => {
+        if (data) setVideos(data);
+    }, [data])
 
 
     const clearHistory = async () => {
 
-        if (currentUser && userData) {
+        if (currentUser && currentUserData) {
             const docRef = doc(db, "users", currentUser.uid);
 
             await updateDoc(docRef, {
@@ -60,14 +58,16 @@ const History = () => {
 
 
     const handleDelete = async (id) => {
-        const { history } = userData;
+        const { history } = currentUserData;
         const docRef = doc(db, "users", currentUser.uid);
         const index = history.indexOf(id);
-        history.splice(index, 1)
+        history.splice(index, 1);
 
         await updateDoc(docRef, {
             history
         })
+
+        setVideos(videos.filter(ele => ele.id !== id));
     }
 
     return (
@@ -83,19 +83,17 @@ const History = () => {
                     <Sort setVideos={setVideos} videos={videos} />
                 </div>
 
-
-
                 <div className='dark:bg-black bg-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 justify-items-center gap-5'>
                     {
-                        !loading && videos ?
+                        !isLoading && videos  ?
                             videos.map((ele, i) => {
 
                                 const { id, title, channelTitle, publishedTimeText, viewCount, channelThumbnail, thumbnail, lengthText, channelId } = ele;
 
                                 if (thumbnail) {
                                     return (
-                                        <div className="relative"  key={i}>
-                                            <HomeVdoCard videoId={id} title={title} channelTitle={channelTitle} time={publishedTimeText} views={viewCount} channelPhoto={channelThumbnail ? channelThumbnail : [{ url: 'https://static.vecteezy.com/system/resources/previews/008/506/404/original/contact-person-red-icon-free-png.png' }]} thumbnail={thumbnail}  lengthText={lengthText} channelId={channelId} />
+                                        <div className="relative" key={i}>
+                                            <HomeVdoCard videoId={id} title={title} channelTitle={channelTitle} time={publishedTimeText} views={viewCount} channelPhoto={channelThumbnail ? channelThumbnail : [{ url: 'https://static.vecteezy.com/system/resources/previews/008/506/404/original/contact-person-red-icon-free-png.png' }]} thumbnail={thumbnail} lengthText={lengthText} channelId={channelId} />
 
                                             <button className='absolute left-[88%] top-[88%]' onClick={() => handleDelete(id)}><MdDelete className='text-2xl dark:text-white text-black' /></button>
                                         </div>

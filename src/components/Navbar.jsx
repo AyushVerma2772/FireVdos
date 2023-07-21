@@ -8,9 +8,9 @@ import ToggleMode from './ToggleMode';
 import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase-config';
-import { AuthContext } from '../context/AuthContext';
 import { handleGoogleSignIn } from './Header';
 import { toast } from 'react-toastify';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
 const Navbar = ({ showNav, setShowNav }) => {
 
@@ -19,7 +19,7 @@ const Navbar = ({ showNav, setShowNav }) => {
         toast.success('Log out successful 🤘🏻 ', { position: "top-center", autoClose: 5000, hideProgressBar: false, closeOnClick: true, pauseOnHover: true, draggable: true, progress: undefined, theme: "colored", });
     }
 
-    const currentUser = useContext(AuthContext);
+    const { currentUser } = useContext(CurrentUserContext);
 
     return (
         <>

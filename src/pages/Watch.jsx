@@ -1,44 +1,30 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import VideoArea from '../components/VideoArea';
 import RelatedVdos from '../components/RelatedVdos';
 import { CountryCodeContext } from '../context/countryCodeContext';
 import { fetchFromAPI } from '../fetchAPI';
+import { useQuery } from 'react-query';
 
 const Watch = () => {
     const { videoID } = useParams();
     const countryCode = useContext(CountryCodeContext);
-    const [videoData, setVideoData] = useState();
-    const [loading, setLoading] = useState(false);
-    const [relatedVdos, setRelatedVdos] = useState([])
-
 
     const getDataFromApi = async () => {
-        setLoading(true);
         const apiData = await fetchFromAPI(`related?id=${videoID}&geo=${countryCode}`);
-        setVideoData(apiData.meta);
-        setRelatedVdos(apiData.data);
+        return apiData;
+    };
 
-        setLoading(false);
-    }
-
-    useEffect(() => {
-        getDataFromApi();
-
-        // eslint-disable-next-line
-    }, [videoID])
-
-
+    const { isLoading, data } = useQuery(videoID, getDataFromApi, { cacheTime: 1800000, staleTime: 1800000 });
 
     return (
         <>
             <div className="lg:flex w-full max-w-full max-h-full overflow-auto scrollbar-hide md:scrollbar-default">
-                <VideoArea loading={loading} videoData={videoData} nextVideoID={relatedVdos[0]?.videoId} />
-
-                <RelatedVdos loading={loading} relatedVdos={relatedVdos} />
+                <VideoArea loading={isLoading} videoData={data?.meta} nextVideoID={data?.data[0]?.videoId} />
+                <RelatedVdos loading={isLoading} relatedVdos={data?.data} />
             </div>
         </>
-    )
-}
+    );
+};
 
-export default Watch
+export default Watch;

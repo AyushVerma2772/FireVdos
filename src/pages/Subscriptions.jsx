@@ -1,10 +1,10 @@
-import React, { useContext } from 'react'
-import SubscribeCard from '../components/SubscribeCard'
-import { UserDataContext } from '../context/UserDataContext'
+import React, { useContext } from 'react';
+import SubscribeCard from '../components/SubscribeCard';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
 const Subscriptions = () => {
 
-    const userData = useContext(UserDataContext);
+    const { currentUserData } = useContext(CurrentUserContext);
 
     // console.log(userData.subscribedChannels)
 
@@ -16,9 +16,9 @@ const Subscriptions = () => {
 
                 <div className="p-5 md:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-6 xl:gap-12 justify-items-center">
                     {
-                        userData && userData.subscribedChannels ?
+                        currentUserData && currentUserData.subscribedChannels ?
 
-                            userData.subscribedChannels.map((ele, i) => (<SubscribeCard key={i} channelId={ele.channelId} channelName={ele.channelName} channelImgUrl={ele.channelImgUrl} subscriberCount={ele.subscriberCount} />))
+                            currentUserData.subscribedChannels.map((ele, i) => (<SubscribeCard key={i} channelId={ele.channelId} channelName={ele.channelName} channelImgUrl={ele.channelImgUrl} subscriberCount={ele.subscriberCount} />))
 
                             :
 

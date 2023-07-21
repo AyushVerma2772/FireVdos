@@ -2,26 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import "./index.css";
-import { AuthContextProvider } from './context/AuthContext';
 import { CountryCodeProvider } from './context/countryCodeContext';
-import SearchDataContextProvider from './context/SearchDataContext';
-import { UserDataContextProvider } from './context/UserDataContext';
 import { VideoDataProvider } from './context/VideoDataContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { CurrentUserContextProvider } from './context/CurrentUserContext';
 
+const queryClint = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <AuthContextProvider>
+  <CurrentUserContextProvider>
     <CountryCodeProvider>
-      <SearchDataContextProvider>
-        <VideoDataProvider>
-          <UserDataContextProvider>
-
-            <App />
-
-          </UserDataContextProvider>
-        </VideoDataProvider>
-      </SearchDataContextProvider>
+      <VideoDataProvider>
+        <QueryClientProvider client={queryClint}>
+          <App />
+        </QueryClientProvider>
+      </VideoDataProvider>
     </CountryCodeProvider>
-  </AuthContextProvider>
+  </CurrentUserContextProvider>
 );

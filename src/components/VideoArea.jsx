@@ -4,20 +4,18 @@ import VideoAreaSkeleton from '../skeletonComponents/VideoAreaSkeleton';
 import CommentArea from './CommentArea';
 import DownloadBtn from './DownloadBtn';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import { UserDataContext } from '../context/UserDataContext';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import SubscribeBtn from './SubscribeBtn';
 import { toast } from 'react-toastify';
 import ShareModal from './ShareModal';
 import ReactPlayer from 'react-player';
+import { CurrentUserContext } from '../context/CurrentUserContext';
 
 const VideoArea = ({ loading, videoData, nextVideoID }) => {
 
     const [showMore, setShowMore] = useState(false);
-    const currentUser = useContext(AuthContext);
-    const userData = useContext(UserDataContext);
+    const { currentUser, currentUserData } = useContext(CurrentUserContext);
     const navigate = useNavigate();
     const [isAutoPlay, setIsAutoPlay] = useState(
         localStorage.getItem('autoplay') === 'true' || false
@@ -43,9 +41,9 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
 
     // handleLikes of the video
     const handleLike = async () => {
-        if (currentUser && userData) {
+        if (currentUser && currentUserData) {
             const docRef = doc(db, "users", currentUser.uid);
-            const { likedVdos } = userData;
+            const { likedVdos } = currentUserData;
 
             if (likedVdos.includes(videoData.videoId)) {
                 const index = likedVdos.indexOf(videoData.videoId);
@@ -67,9 +65,9 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
 
     // checking video is present in user history or not
     const checkHistory = async () => {
-        if (currentUser && userData && userData.history && videoData) {
+        if (currentUser && currentUserData && currentUserData.history && videoData) {
             const docRef = doc(db, "users", currentUser.uid);
-            const { history } = userData;
+            const { history } = currentUserData;
 
             if (!history.includes(videoData.videoId)) {
                 history.unshift(videoData.videoId)
@@ -88,7 +86,7 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
         checkHistory();
 
         // eslint-disable-next-line
-    }, [currentUser, userData, videoData]);
+    }, [currentUser, currentUserData, videoData]);
 
 
     useEffect(() => {
@@ -112,7 +110,7 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
     return (
         <>
             {
-                !loading ?
+                !loading && videoData ?
                     <div className="w-full lg:w-[70%]">
                         <div className="gap-2 p-2 md:p-3 lg:p-5 flex-col w-full">
 
@@ -147,7 +145,7 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
                                             {/* Agar user ne video ko like kara ha to 'Liked' dikhna chahiye else like counts */}
                                             <span>
                                                 {
-                                                    userData && userData.likedVdos && userData.likedVdos.includes(videoData?.videoId) ?
+                                                    currentUserData && currentUserData.likedVdos && currentUserData.likedVdos.includes(videoData?.videoId) ?
                                                         "Liked"
                                                         :
                                                         parseInt(videoData?.likeCount).toLocaleString()
