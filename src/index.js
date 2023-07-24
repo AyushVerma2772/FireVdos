@@ -6,6 +6,8 @@ import { CountryCodeProvider } from './context/countryCodeContext';
 import { VideoDataProvider } from './context/VideoDataContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { CurrentUserContextProvider } from './context/CurrentUserContext';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+
 
 const queryClint = new QueryClient();
 
@@ -21,3 +23,8 @@ root.render(
     </CountryCodeProvider>
   </CurrentUserContextProvider>
 );
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://cra.link/PWA
+serviceWorkerRegistration.register();

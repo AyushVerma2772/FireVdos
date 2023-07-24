@@ -1,0 +1,37 @@
+{
+  "name": "FireVdos",
+  "short_name": "FireVdos",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "maskable.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "firevodslogo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "firevodslogo256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "firevodslogo384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "firevodslogo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
