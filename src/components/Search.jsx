@@ -38,10 +38,6 @@ const Search = () => {
     window.handleSuggestionCallback = (data) => {
       setSuggestedData(data[1]);
     };
-
-    // console.log(suggestedData); // Log suggestedData immediately after setting it
-
-    // eslint-disable-next-line
   }, [searchValue]);
 
   const handleSuggestion = (query) => {
@@ -57,12 +53,15 @@ const Search = () => {
   useEffect(() => {
     const handleSearchValue = () => {
       setSearchValue(transcript);
+      if (!listening && transcript.trim().length) {
+        navigate(`/search/${transcript}`);
+      }
     };
 
     handleSearchValue();
 
     // eslint-disable-next-line
-  }, [transcript]);
+  }, [transcript, listening]);
 
   if (!browserSupportsSpeechRecognition) {
     return null;
@@ -106,12 +105,7 @@ const Search = () => {
           </button>
 
           {isFocused && (
-            <SuggestionBox
-              suggestedData={suggestedData}
-              setSearchValue={setSearchValue}
-              setIsFocused={setIsFocused}
-              setIsHover={setIsHover}
-            />
+            <SuggestionBox suggestedData={suggestedData} setSearchValue={setSearchValue} setIsFocused={setIsFocused} setIsHover={setIsHover}/>
           )}
         </form>
 

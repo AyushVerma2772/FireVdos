@@ -29,6 +29,7 @@ const DownloadBtn = ({ videoId }) => {
 
                 window.open(vdoUrl)
             }
+            e.target.value = "";
         }
     };
 

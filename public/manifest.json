@@ -8,28 +8,28 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "maskable.png",
+      "src": "firevodslogo.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "firevodslogo192.png",
+      "src": "firevodslogo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "firevodslogo256.png",
+      "src": "firevodslogo.png",
       "type": "image/png",
       "sizes": "256x256"
     },
     {
-      "src": "firevodslogo384.png",
+      "src": "firevodslogo.png",
       "type": "image/png",
       "sizes": "384x384"
     },
     {
-      "src": "firevodslogo512.png",
+      "src": "firevodslogo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

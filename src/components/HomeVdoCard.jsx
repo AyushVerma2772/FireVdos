@@ -19,7 +19,7 @@ const HomeVdoCard = ({ videoId, title, channelTitle, time, views, channelPhoto, 
                             <>
                                 <img className='w-full h-full rounded-md' src={thumbnail[thumbnail.length - 1].url} alt="" />
 
-                                <span className='absolute rounded-sm py-0.5 px-1 text-xs bg-zinc-950/80 text-white bottom-1 right-1'>{lengthText}</span>
+                                {lengthText && <span className='absolute rounded-sm py-0.5 px-1 text-xs bg-zinc-950/80 text-white bottom-1 right-1'>{lengthText}</span>}
                             </>
                     }
 

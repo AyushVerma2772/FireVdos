@@ -47,6 +47,7 @@ const Header = ({ setShowNav }) => {
 
     const { currentUser } = useContext(CurrentUserContext);
     const countryCode = useContext(CountryCodeContext);
+    const placeholderImgUrl = "https://static.vecteezy.com/system/resources/previews/008/506/404/original/contact-person-red-icon-free-png.png";
 
 
 
@@ -57,11 +58,11 @@ const Header = ({ setShowNav }) => {
                     <AiOutlineMenu className='text-2xl sm:hidden' />
                 </button>
 
-                <a href="/" className='d-flex gap-2 w-max relative' title="FireVdos" >
+                <Link to="/" className='d-flex gap-2 w-max relative' title="FireVdos" >
                     <img className='w-9 sm:w-10' src={logo} alt="" />
                     <span className='hidden font-semibold sm:block sm:text-2xl'>FireVdos</span>
                     <span className='absolute text-xs text-dark-gray dark:text-light-gray font-medium left-[110%] sm:left-[105%] bottom-[55%]' >{countryCode}</span>
-                </a>
+                </Link>
             </div>
 
             <Search />
@@ -73,8 +74,8 @@ const Header = ({ setShowNav }) => {
 
                 <button className='h-10 w-10 rounded-full' onClick={handleGoogleSignIn} title={currentUser ? currentUser.displayName : 'Sign in'} >
                     <img className='w-10 h-10 rounded-full' src={
-                        currentUser ? currentUser.photoURL : 'https://static.vecteezy.com/system/resources/previews/008/506/404/original/contact-person-red-icon-free-png.png'
-                    } alt="profile-img" referrerPolicy='' />
+                        currentUser ? currentUser.photoURL : placeholderImgUrl
+                    } alt="profile-img" referrerPolicy='' onError={e => e.target.src = placeholderImgUrl} />
                 </button>
             </div>
 

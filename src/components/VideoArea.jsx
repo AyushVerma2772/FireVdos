@@ -18,7 +18,7 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
     const { currentUser, currentUserData } = useContext(CurrentUserContext);
     const navigate = useNavigate();
     const [isAutoPlay, setIsAutoPlay] = useState(
-        localStorage.getItem('autoplay') === 'true' || false
+        localStorage.getItem('autoplay') === 'true' || true
     );
 
 
@@ -139,7 +139,7 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
                                 <div className="d-flex gap-3 flex-wrap w-full justify-between">
                                     {/* Liked button */}
                                     {
-                                        videoData?.likeCount && <button className='dark:text-white bg-stone-200 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-zinc-700/70 px-3 rounded-3xl text-base d-flex gap-2' onClick={handleLike}>
+                                        videoData?.likeCount && <button className='dark:text-white bg-stone-200 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-zinc-700/70 px-3 rounded-3xl text-base d-flex gap-2' onClick={handleLike} title='Like'>
                                             <AiOutlineLike className='py-1 pr-2 border-r border-dark-gray text-3xl' />
 
                                             {/* Agar user ne video ko like kara ha to 'Liked' dikhna chahiye else like counts */}
@@ -156,7 +156,7 @@ const VideoArea = ({ loading, videoData, nextVideoID }) => {
                                     }
 
                                     {/* Autoplay Button */}
-                                    <label className="relative inline-flex items-center cursor-pointer">
+                                    <label className="relative inline-flex items-center cursor-pointer" title='Autoplay'>
                                         <input type="checkbox" value="" className="sr-only peer" onChange={handleAutoPlay} checked={isAutoPlay} />
                                         <div className="w-9 h-5 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                                         <span className="ml-3 text-sm font-medium">Autoplay</span>

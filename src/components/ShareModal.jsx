@@ -17,7 +17,7 @@ const ShareModal = ({ title }) => {
 
     return (
         <>
-            <button className='dark:text-white bg-stone-200 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-zinc-700/70 px-3 py-1 rounded text-base d-flex gap-2' onClick={() => setIsOpen(true)} >Share <PiShareFatFill />
+            <button className='dark:text-white bg-stone-200 hover:bg-stone-300/80 dark:bg-[#272727] dark:hover:bg-zinc-700/70 px-3 py-1 rounded text-base d-flex gap-2' onClick={() => setIsOpen(true)} title='Share' >Share <PiShareFatFill />
             </button>
 
             {isOpen && (

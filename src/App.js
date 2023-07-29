@@ -12,7 +12,7 @@ import Subscriptions from './pages/Subscriptions';
 import { ToastContainer, toast } from 'react-toastify';
 import History from './pages/History';
 import 'react-toastify/dist/ReactToastify.css';
-import { ReactQueryDevtools } from "react-query/devtools"
+// import { ReactQueryDevtools } from "react-query/devtools"
 import { CurrentUserContext } from './context/CurrentUserContext';
 
 
@@ -56,7 +56,7 @@ const App = () => {
 
         </main>
 
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </div>
     </BrowserRouter>
   );
