@@ -7,6 +7,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import { RxCross2 } from "react-icons/rx";
+import ListeningModal from "./ListeningModal";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -70,10 +71,7 @@ const Search = () => {
   return (
     <>
       <div className="d-flex justify-between md:w-[55%] w-[63%] relative md:gap-3 gap-1">
-        <form
-          onSubmit={handleSearch}
-          className="w-full d-flex h-9 rounded-3xl overflow-hidden"
-        >
+        <form onSubmit={handleSearch} className="w-full d-flex h-9 rounded-3xl overflow-hidden">
           <input
             className={`search h-full dark:bg-stone-800/80 w-[82%] sm:w-[90%] focus:border focus:border-blue-700 outline-0 text-base py-1 px-3 sm:px-4 ${searchValue || listening ? "visible" : "invisible"
               } sm:visible border-2 dark:border-0 border-r-0 dark:focus:border dark:focus:border-blue-700`}
@@ -105,25 +103,24 @@ const Search = () => {
           </button>
 
           {isFocused && (
-            <SuggestionBox suggestedData={suggestedData} setSearchValue={setSearchValue} setIsFocused={setIsFocused} setIsHover={setIsHover}/>
+            <SuggestionBox suggestedData={suggestedData} setSearchValue={setSearchValue} setIsFocused={setIsFocused} setIsHover={setIsHover} />
           )}
         </form>
 
-        {listening ? (
-          <button
-            className="cursor-pointer dark:hover:bg-dark-gray hover:bg-gray-300/40 rounded-full p-2"
-            onClick={SpeechRecognition.stopListening}
-          >
-            <RxCross2 className="text-lg md:text-xl" />
-          </button>
-        ) : (
-          <button
-            className="cursor-pointer dark:hover:bg-dark-gray hover:bg-gray-300/40 rounded-full p-2"
-            onClick={SpeechRecognition.startListening}
-          >
-            <FaMicrophone className="text-lg md:text-xl" />
-          </button>
-        )}
+        {
+          listening ?
+            <button className="cursor-pointer dark:hover:bg-dark-gray hover:bg-gray-300/40 rounded-full p-2"
+              onClick={SpeechRecognition.stopListening}>
+              <RxCross2 className="text-lg md:text-xl" />
+            </button>
+            :
+            <button className="cursor-pointer dark:hover:bg-dark-gray hover:bg-gray-300/40 rounded-full p-2" onClick={SpeechRecognition.startListening} >
+              <FaMicrophone className="text-lg md:text-xl" />
+            </button>
+        }
+
+
+        {listening && <ListeningModal searchValue={searchValue} stopListening={SpeechRecognition.stopListening} />}
       </div>
     </>
   );

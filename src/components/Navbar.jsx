@@ -23,7 +23,7 @@ const Navbar = ({ showNav, setShowNav }) => {
 
     return (
         <>
-            <nav className={`absolute z-20 w-3/5 sm:w-auto flex flex-col h-full sm:sticky sm:left-0 dark:bg-black bg-white items-start sm:justify-start py-5 px-2 gap-3 sm:gap-2 md:gap-0 ${showNav ? 'left-0' : 'left-[-100%]'} overflow-auto scrollbar-hide`} onClick={() => setShowNav(prev => !prev)} >
+            <nav className={`absolute z-[9] w-3/5 sm:w-auto flex flex-col h-full sm:sticky sm:left-0 dark:bg-black bg-white items-start sm:justify-start py-5 px-2 gap-3 sm:gap-2 md:gap-0 ${showNav ? 'left-0' : 'left-[-100%]'} overflow-auto scrollbar-hide`} onClick={() => setShowNav(prev => !prev)} >
 
                 <Link to='/' className='nav-link' title='Home'>
                     <AiFillHome className='text-xl md:text-lg 2xl:text-2xl' />
